@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "tbl_type_figure")
-public class TypeFigure {
+public class TypeFigureEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "tf_id")
