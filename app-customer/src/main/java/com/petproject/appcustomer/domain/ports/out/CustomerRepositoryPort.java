@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface CustomerRepositoryPort {
     CustomerEntity save(CustomerEntity entity);
 
-    Optional<CustomerEntity> findById(Long id);
+    Optional<CustomerEntity> findById(Integer id);
 
     List<CustomerEntity> findAll();
 
-    Optional<CustomerEntity> update(Long id, CustomerEntity entity);
+    CustomerEntity update(Integer id, CustomerEntity entity);
 
-    boolean deleteById(Long id);
+    boolean deleteById(Integer id);
 }

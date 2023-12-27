@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface PetRepositoryPort {
     PetEntity save(PetEntity entity);
 
-    Optional<PetEntity> findById(Long id);
+    Optional<PetEntity> findById(Integer id);
 
     List<PetEntity> findAll();
 
-    Optional<PetEntity> update(Long id, PetEntity entity);
+    Optional<PetEntity> update(Integer id, PetEntity entity);
 
-    boolean deleteById(Long id);
+    boolean deleteById(Integer id);
 }

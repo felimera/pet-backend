@@ -5,7 +5,7 @@ import com.petproject.appcustomer.domain.models.in.CustomerEntity;
 import java.util.List;
 
 public interface RetrieveCustomerUseCase {
-    CustomerEntity getCustomer(Long id);
+    CustomerEntity getCustomer(Integer id);
 
     List<CustomerEntity> getAllCustomer();
 }
