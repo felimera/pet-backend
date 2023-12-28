@@ -49,7 +49,7 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
         Optional<PetEntity> optionalPetEntity = jpaPetRepository.findById(id);
         if (optionalPetEntity.isPresent()) {
             optionalPetEntity.get().setName(dto.getName());
-            optionalPetEntity.get().setPhone(dto.getPhone());
+            optionalPetEntity.get().setPhoto(dto.getPhoto());
             optionalPetEntity.get().setBirthdate(LocalDate.parse(dto.getBirthdate()));
             optionalPetEntity.get().setAge(dto.getAge());
             optionalPetEntity.get().setGender(dto.getGender());

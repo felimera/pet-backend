@@ -22,8 +22,8 @@ public class PetEntity {
     private Integer id;
     @Column(name = "pe_name")
     private String name;
-    @Column(name = "pe_phone")
-    private String phone;
+    @Column(name = "pe_photo")
+    private String photo;
     @Column(name = "pe_birthdate")
     private LocalDate birthdate;
     @Column(name = "pe_age")

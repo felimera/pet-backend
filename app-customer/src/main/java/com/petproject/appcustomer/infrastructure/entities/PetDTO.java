@@ -12,7 +12,7 @@ import lombok.Setter;
 public class PetDTO {
     private Integer id;
     private String name;
-    private String phone;
+    private String photo;
     private String birthdate;
     private String age;
     private String gender;
