@@ -1,18 +1,18 @@
 package com.petproject.appcustomer.domain.ports.out;
 
-import com.petproject.appcustomer.domain.models.in.PetEntity;
+import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface PetRepositoryPort {
-    PetEntity save(PetEntity entity);
+    PetDTO save(PetDTO dto);
 
-    Optional<PetEntity> findById(Integer id);
+    Optional<PetDTO> findById(Integer id);
 
-    List<PetEntity> findAll();
+    List<PetDTO> findAll();
 
-    PetEntity update(Integer id, PetEntity entity);
+    PetDTO update(Integer id, PetDTO dto);
 
     boolean deleteById(Integer id);
 }

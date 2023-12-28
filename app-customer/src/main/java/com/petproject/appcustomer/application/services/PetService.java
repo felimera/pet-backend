@@ -1,10 +1,10 @@
 package com.petproject.appcustomer.application.services;
 
-import com.petproject.appcustomer.domain.models.in.PetEntity;
 import com.petproject.appcustomer.domain.ports.in.CreatePetUseCase;
 import com.petproject.appcustomer.domain.ports.in.DeletePetUseCase;
 import com.petproject.appcustomer.domain.ports.in.RetrievePetUseCase;
 import com.petproject.appcustomer.domain.ports.in.UpdatePetUseCase;
+import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -18,8 +18,8 @@ public class PetService implements CreatePetUseCase, DeletePetUseCase, RetrieveP
     private final UpdatePetUseCase updatePetUseCase;
 
     @Override
-    public PetEntity createCustomer(PetEntity petEntity) {
-        return createPetUseCase.createCustomer(petEntity);
+    public PetDTO createCustomer(PetDTO petDTO) {
+        return createPetUseCase.createCustomer(petDTO);
     }
 
     @Override
@@ -28,17 +28,17 @@ public class PetService implements CreatePetUseCase, DeletePetUseCase, RetrieveP
     }
 
     @Override
-    public PetEntity getPet(Integer id) {
+    public PetDTO getPet(Integer id) {
         return retrievePetUseCase.getPet(id);
     }
 
     @Override
-    public List<PetEntity> getAllPet() {
+    public List<PetDTO> getAllPet() {
         return retrievePetUseCase.getAllPet();
     }
 
     @Override
-    public PetEntity updatePet(Integer id, PetEntity petEntity) {
-        return updatePetUseCase.updatePet(id, petEntity);
+    public PetDTO updatePet(Integer id, PetDTO petDTO) {
+        return updatePetUseCase.updatePet(id, petDTO);
     }
 }
