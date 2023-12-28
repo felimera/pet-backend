@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ControllerAdvice {
     @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<ExceptionControlMessage> runtimeExceptionHandler(RuntimeException ex) {
-        ExceptionControlMessage error = ExceptionControlMessage.builder().code("500").message(ex.getMessage()).build();
+    public ResponseEntity<ExceptionResponseMessage> runtimeExceptionHandler(RuntimeException ex) {
+        ExceptionResponseMessage error = ExceptionResponseMessage.builder().code("500").message(ex.getMessage()).build();
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
