@@ -1,11 +1,11 @@
 package com.petproject.appcustomer.domain.ports.in;
 
-import com.petproject.appcustomer.domain.models.in.CustomerEntity;
+import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 
 import java.util.List;
 
 public interface RetrieveCustomerUseCase {
-    CustomerEntity getCustomer(Integer id);
+    CustomerDTO getCustomer(Integer id);
 
-    List<CustomerEntity> getAllCustomer();
+    List<CustomerDTO> getAllCustomer();
 }

@@ -1,10 +1,10 @@
 package com.petproject.appcustomer.application.services;
 
-import com.petproject.appcustomer.domain.models.in.CustomerEntity;
 import com.petproject.appcustomer.domain.ports.in.CreateCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.in.DeleteCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.in.RetrieveCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.in.UpdateCustomerUseCase;
+import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -18,8 +18,8 @@ public class CustomerService implements CreateCustomerUseCase, DeleteCustomerUse
     private final UpdateCustomerUseCase updateCustomerUseCase;
 
     @Override
-    public CustomerEntity createCustomer(CustomerEntity customerEntity) {
-        return createCustomerUseCase.createCustomer(customerEntity);
+    public CustomerDTO createCustomer(CustomerDTO customerDTO) {
+        return createCustomerUseCase.createCustomer(customerDTO);
     }
 
     @Override
@@ -28,17 +28,17 @@ public class CustomerService implements CreateCustomerUseCase, DeleteCustomerUse
     }
 
     @Override
-    public CustomerEntity getCustomer(Integer id) {
+    public CustomerDTO getCustomer(Integer id) {
         return retrieveCustomerUseCase.getCustomer(id);
     }
 
     @Override
-    public List<CustomerEntity> getAllCustomer() {
+    public List<CustomerDTO> getAllCustomer() {
         return retrieveCustomerUseCase.getAllCustomer();
     }
 
     @Override
-    public CustomerEntity updateCustomer(Integer id, CustomerEntity customerEntity) {
-        return updateCustomerUseCase.updateCustomer(id, customerEntity);
+    public CustomerDTO updateCustomer(Integer id, CustomerDTO customerDTO) {
+        return updateCustomerUseCase.updateCustomer(id, customerDTO);
     }
 }

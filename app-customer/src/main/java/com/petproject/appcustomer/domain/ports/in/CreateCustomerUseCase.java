@@ -1,7 +1,7 @@
 package com.petproject.appcustomer.domain.ports.in;
 
-import com.petproject.appcustomer.domain.models.in.CustomerEntity;
+import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 
 public interface CreateCustomerUseCase {
-    CustomerEntity createCustomer(CustomerEntity customerEntity);
+    CustomerDTO createCustomer(CustomerDTO customerDTO);
 }

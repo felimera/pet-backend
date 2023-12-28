@@ -1,18 +1,18 @@
 package com.petproject.appcustomer.domain.ports.out;
 
-import com.petproject.appcustomer.domain.models.in.CustomerEntity;
+import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CustomerRepositoryPort {
-    CustomerEntity save(CustomerEntity entity);
+    CustomerDTO save(CustomerDTO dto);
 
-    Optional<CustomerEntity> findById(Integer id);
+    Optional<CustomerDTO> findById(Integer id);
 
-    List<CustomerEntity> findAll();
+    List<CustomerDTO> findAll();
 
-    CustomerEntity update(Integer id, CustomerEntity entity);
+    CustomerDTO update(Integer id, CustomerDTO dto);
 
     boolean deleteById(Integer id);
 }

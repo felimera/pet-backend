@@ -1,7 +1,7 @@
 package com.petproject.appcustomer.domain.ports.in;
 
-import com.petproject.appcustomer.domain.models.in.CustomerEntity;
+import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 
 public interface UpdateCustomerUseCase {
-    CustomerEntity updateCustomer(Integer id, CustomerEntity customerEntity);
+    CustomerDTO updateCustomer(Integer id, CustomerDTO customerDTO);
 }
