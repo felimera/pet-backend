@@ -3,8 +3,10 @@ package com.petproject.appcustomer.infrastructure.repositories;
 import com.petproject.appcustomer.domain.models.in.CustomerEntity;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
+import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.CustomerMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,7 +32,10 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
 
     @Override
     public List<CustomerDTO> findAll() {
-        return jpaCustomerRepository.findAll().stream().map(CustomerMapper.INSTANCE::toDomainModel).toList();
+        List<CustomerEntity> customerEntities = jpaCustomerRepository.findAll();
+        if (customerEntities.isEmpty())
+            throw new NotFoundException("No customer records found.", "201-01", HttpStatus.NOT_FOUND);
+        return customerEntities.stream().map(CustomerMapper.INSTANCE::toDomainModel).toList();
     }
 
     @Override

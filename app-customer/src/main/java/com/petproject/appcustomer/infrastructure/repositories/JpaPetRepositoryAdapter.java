@@ -3,8 +3,10 @@ package com.petproject.appcustomer.infrastructure.repositories;
 import com.petproject.appcustomer.domain.models.in.PetEntity;
 import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
+import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.PetMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -41,7 +43,10 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
 
     @Override
     public List<PetDTO> findAll() {
-        return jpaPetRepository.findAll().stream().map(PetMapper.INSTANCE::toDomainModel).toList();
+        List<PetEntity> petEntities = jpaPetRepository.findAll();
+        if (petEntities.isEmpty())
+            throw new NotFoundException("No pet result.", "201-02", HttpStatus.NOT_FOUND);
+        return petEntities.stream().map(PetMapper.INSTANCE::toDomainModel).toList();
     }
 
     @Override
