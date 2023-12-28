@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "tbl_pet")
 public class PetEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pe_id")
     private Integer id;
     @Column(name = "pe_name")

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "tbl_customer")
 public class CustomerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cus_id")
     private Integer id;
     @Column(name = "cus_first_name")
