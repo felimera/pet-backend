@@ -12,7 +12,7 @@ public interface PetRepositoryPort {
 
     List<PetEntity> findAll();
 
-    Optional<PetEntity> update(Integer id, PetEntity entity);
+    PetEntity update(Integer id, PetEntity entity);
 
     boolean deleteById(Integer id);
 }

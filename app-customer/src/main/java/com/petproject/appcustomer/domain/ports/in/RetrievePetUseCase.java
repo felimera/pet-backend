@@ -5,7 +5,7 @@ import com.petproject.appcustomer.domain.models.in.PetEntity;
 import java.util.List;
 
 public interface RetrievePetUseCase {
-    PetEntity getPet(Long id);
+    PetEntity getPet(Integer id);
 
     List<PetEntity> getAllPet();
 }
