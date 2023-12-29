@@ -15,7 +15,7 @@ import lombok.Setter;
 public class ColorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "col:id")
+    @Column(name = "col_id")
     private Integer id;
     @Column(name = "col_name")
     private String name;
