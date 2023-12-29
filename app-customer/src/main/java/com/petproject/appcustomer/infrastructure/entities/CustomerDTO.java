@@ -15,10 +15,12 @@ public class CustomerDTO {
     @NotEmpty(message = "The customer's first name cannot be empty.")
     @NotNull(message = "The customer's first name cannot be null.")
     @Size(max = 50, message = "The customer's name only has a maximum of 50 characters.")
+    @Pattern(regexp = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$",message = "It is not a valid name.")
     private String firstName;
     @NotEmpty(message = "The customer's last name cannot be empty.")
     @NotNull(message = "The customer's last name cannot be null.")
     @Size(max = 50, message = "The customer's last name only has a maximum of 50 characters.")
+    @Pattern(regexp = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$",message = "It is not a valid last name.")
     private String lastName;
     @NotEmpty(message = "The customer's address cannot be empty.")
     @Size(max = 100, message = "The customer's home address only has a maximum of 100 characters.")
