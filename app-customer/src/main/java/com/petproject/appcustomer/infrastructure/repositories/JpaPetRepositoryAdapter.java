@@ -19,6 +19,7 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
 
     private final JpaPetRepository jpaPetRepository;
 
+    private final JpaCustomerRepository jpaCustomerRepository;
     private final JpaColorEntityRepository jpaColorEntityRepository;
     private final JpaBodySizeEntityRepository jpaBodySizeEntityRepository;
     private final JpaTypeFigureEntityRepository jpaTypeFigureEntityRepository;
@@ -27,6 +28,7 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
     public PetDTO save(PetDTO dto) {
         PetEntity newPetEntity = PetMapper.INSTANCE.fromDomainModel(dto);
 
+        jpaCustomerRepository.findById(dto.getIdCustomerEntity()).ifPresent(newPetEntity::setCustomerEntity);
         jpaColorEntityRepository.findById(dto.getIdHairColorEntity()).ifPresent(newPetEntity::setHairColorEntity);
         jpaBodySizeEntityRepository.findById(dto.getIdBodySizeEntity()).ifPresent(newPetEntity::setBodySizeEntity);
         jpaTypeFigureEntityRepository.findById(dto.getIdTypeFigureEntity()).ifPresent(newPetEntity::setTypeFigureEntity);
