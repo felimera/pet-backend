@@ -6,6 +6,7 @@ import lombok.Setter;
 @Setter
 public class RouterLinkDto {
     private String label;
+    private String acronym;
     private String icon;
     private String url;
     private String description;

@@ -19,6 +19,8 @@ public class RouterLink {
     private Long id;
     @Column(name = "rl_label")
     private String label;
+    @Column(name = "rl_acronym")
+    private String acronym;
     @Column(name = "rl_icon")
     private String icon;
     @Column(name = "rl_url")
