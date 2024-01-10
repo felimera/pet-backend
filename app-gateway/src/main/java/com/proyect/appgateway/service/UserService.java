@@ -8,4 +8,6 @@ public interface UserService {
     User findById(Long idUser);
 
     boolean isExistUser(String email);
+
+    User getUserByEmail(String email);
 }

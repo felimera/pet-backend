@@ -42,4 +42,12 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException(Constants.MESSAGE_USER_NOT_FOUND, "415", HttpStatus.NOT_FOUND);
         return true;
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        Optional<User> userOptional = userRepository.findOneByEmail(email);
+        if (userOptional.isEmpty())
+            throw new NotFoundException(Constants.MESSAGE_USER_NOT_FOUND, "415", HttpStatus.NOT_FOUND);
+        return userOptional.get();
+    }
 }
