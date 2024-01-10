@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class JsonPlaceHolderUser {
-    private Long id;
+    private Integer id;
     private String name;
     private String email;
 }
