@@ -67,7 +67,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
     public CustomerDTO getCustomerByEmailUser(String emailUser) {
         JsonPlaceHolderUser user = userExternalServicePort.getUserByEmail(emailUser);
 
-        CustomerEntity customerEntity = jpaCustomerRepository.findById(user.getId()).orElseThrow();
+        CustomerEntity customerEntity = jpaCustomerRepository.getCustomerByUserId(user.getId()).orElseThrow();
         return CustomerMapper.INSTANCE.toDomainModel(customerEntity);
     }
 }

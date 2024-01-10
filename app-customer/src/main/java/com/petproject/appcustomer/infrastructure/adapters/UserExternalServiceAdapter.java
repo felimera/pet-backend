@@ -2,16 +2,18 @@ package com.petproject.appcustomer.infrastructure.adapters;
 
 import com.petproject.appcustomer.domain.models.out.JsonPlaceHolderUser;
 import com.petproject.appcustomer.domain.ports.out.UserExternalServicePort;
-import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
 
-@AllArgsConstructor
 public class UserExternalServiceAdapter implements UserExternalServicePort {
 
     private final RestTemplate restTemplate;
+
+    public UserExternalServiceAdapter() {
+        this.restTemplate = new RestTemplate();
+    }
 
     @Override
     public JsonPlaceHolderUser getUserByEmail(String email) {
