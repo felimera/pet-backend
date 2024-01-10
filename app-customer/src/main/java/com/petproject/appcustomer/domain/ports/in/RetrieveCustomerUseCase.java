@@ -8,4 +8,6 @@ public interface RetrieveCustomerUseCase {
     CustomerDTO getCustomer(Integer id);
 
     List<CustomerDTO> getAllCustomer();
+
+    CustomerDTO getCustomerByEmailUser(String email);
 }

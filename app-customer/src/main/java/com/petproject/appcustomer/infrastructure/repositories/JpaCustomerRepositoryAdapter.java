@@ -1,7 +1,9 @@
 package com.petproject.appcustomer.infrastructure.repositories;
 
 import com.petproject.appcustomer.domain.models.in.CustomerEntity;
+import com.petproject.appcustomer.domain.models.out.JsonPlaceHolderUser;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
+import com.petproject.appcustomer.domain.ports.out.UserExternalServicePort;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.CustomerMapper;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
 
     private final JpaCustomerRepository jpaCustomerRepository;
+    private final UserExternalServicePort userExternalServicePort;
 
     @Override
     public CustomerDTO save(CustomerDTO customerDTO) {
@@ -58,5 +61,13 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
         Optional<CustomerEntity> oldCustomerEntityOptional = jpaCustomerRepository.findById(id);
         oldCustomerEntityOptional.ifPresent(jpaCustomerRepository::delete);
         return !jpaCustomerRepository.existsById(id);
+    }
+
+    @Override
+    public CustomerDTO getCustomerByEmailUser(String emailUser) {
+        JsonPlaceHolderUser user = userExternalServicePort.getUserByEmail(emailUser);
+
+        CustomerEntity customerEntity = jpaCustomerRepository.findById(user.getId()).orElseThrow();
+        return CustomerMapper.INSTANCE.toDomainModel(customerEntity);
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/customer")
 @AllArgsConstructor
 public class CustomerController {
+
     private CustomerService customerService;
 
     @GetMapping
@@ -31,5 +32,10 @@ public class CustomerController {
             throw new ResponseMessageException("401-01", "Error creating client.", CadenaUtil.formatMessage(bindingResult), HttpStatus.BAD_REQUEST);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.createCustomer(customerDTO));
+    }
+
+    @GetMapping(path = "/user")
+    public ResponseEntity<Object> getCustomerByEmailUser(@RequestParam(name = "email") String email) {
+        return ResponseEntity.ok(customerService.getCustomerByEmailUser(email));
     }
 }

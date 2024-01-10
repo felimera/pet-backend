@@ -15,4 +15,6 @@ public interface CustomerRepositoryPort {
     CustomerDTO update(Integer id, CustomerDTO dto);
 
     boolean deleteById(Integer id);
+
+    CustomerDTO getCustomerByEmailUser(String emailUser);
 }
