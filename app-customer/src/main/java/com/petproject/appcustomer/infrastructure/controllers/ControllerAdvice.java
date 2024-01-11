@@ -4,6 +4,7 @@ import com.petproject.appcustomer.infrastructure.entities.exception.ExceptionCon
 import com.petproject.appcustomer.infrastructure.entities.exception.ExceptionResponseMessage;
 import com.petproject.appcustomer.infrastructure.exception.BusinessException;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
+import com.petproject.appcustomer.infrastructure.exception.RequestException;
 import com.petproject.appcustomer.infrastructure.exception.ResponseMessageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,5 +35,11 @@ public class ControllerAdvice {
     public ResponseEntity<ExceptionResponseMessage> notFoundExceptionHandler(NotFoundException ex) {
         ExceptionResponseMessage error = ExceptionResponseMessage.builder().code(ex.getCode()).message(ex.getMessage()).build();
         return new ResponseEntity<>(error, ex.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = RequestException.class)
+    public ResponseEntity<ExceptionResponseMessage> requestExceptionHandler(RequestException ex) {
+        ExceptionResponseMessage error = ExceptionResponseMessage.builder().code(ex.getCode()).message(ex.getMessage()).build();
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
