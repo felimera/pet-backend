@@ -6,6 +6,7 @@ import com.petproject.appcustomer.domain.models.out.JsonPlaceHolderUser;
 import com.petproject.appcustomer.domain.ports.out.UserExternalServicePort;
 import com.petproject.appcustomer.infrastructure.exception.RequestException;
 import com.petproject.appcustomer.infrastructure.util.Constants;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.Objects;
 public class UserExternalServiceAdapter extends TokenExternalServiceAdapter implements UserExternalServicePort {
 
     private final RestTemplate restTemplate;
+    @Value("${variable.config.gateway.url}")
+    private String gatewayUrl;
 
     public UserExternalServiceAdapter() {
         this.restTemplate = new RestTemplate();
@@ -25,7 +28,7 @@ public class UserExternalServiceAdapter extends TokenExternalServiceAdapter impl
 
     @Override
     public UserEntity getUserByEmail(String email) {
-        String apiUrl = "http://localhost:8080/api/user?email=" + email;
+        String apiUrl = gatewayUrl + "api/user?email=" + email;
         ResponseEntity<JsonPlaceHolderUser> responseEntity;
         TokenEntity tokenEntity = getTokenEntity();
         HttpHeaders headers = new HttpHeaders();
