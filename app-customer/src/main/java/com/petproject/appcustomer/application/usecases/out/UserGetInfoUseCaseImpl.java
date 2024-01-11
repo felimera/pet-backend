@@ -1,4 +1,4 @@
-package com.petproject.appcustomer.application.usecases.external;
+package com.petproject.appcustomer.application.usecases.out;
 
 import com.petproject.appcustomer.domain.models.in.UserEntity;
 import com.petproject.appcustomer.domain.ports.in.external.UserGetInfoUseCase;

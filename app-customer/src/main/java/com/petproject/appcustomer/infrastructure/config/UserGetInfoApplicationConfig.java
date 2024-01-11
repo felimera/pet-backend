@@ -1,7 +1,7 @@
 package com.petproject.appcustomer.infrastructure.config;
 
-import com.petproject.appcustomer.application.services.external.UserExternalService;
-import com.petproject.appcustomer.application.usecases.external.UserGetInfoUseCaseImpl;
+import com.petproject.appcustomer.application.services.out.UserExternalService;
+import com.petproject.appcustomer.application.usecases.out.UserGetInfoUseCaseImpl;
 import com.petproject.appcustomer.domain.ports.out.UserExternalServicePort;
 import com.petproject.appcustomer.infrastructure.adapters.UserExternalServiceAdapter;
 import org.springframework.context.annotation.Bean;
