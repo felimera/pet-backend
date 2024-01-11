@@ -3,7 +3,7 @@ package com.proyect.appgateway.models.complement;
 import java.util.stream.Stream;
 
 public enum Rol {
-    A("Administracion"), U("Usuario");
+    A("Administracion"), U("Usuario"),V("Visitante");
     private String role;
 
     private Rol(String role) {

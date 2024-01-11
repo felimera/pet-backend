@@ -18,7 +18,7 @@ public class AccessPermitsController {
     }
 
     @GetMapping(path = "/link")
-    public ResponseEntity<Object> getAccessPermitsByIdCustomer(@RequestParam(name = "email") String email) {
+    public ResponseEntity<Object> getAccessPermitsByEmailCustomer(@RequestParam(name = "email") String email) {
         return ResponseEntity.ok(accessPermitsService.getAccessPermitsByEmailUser(email));
     }
 }
