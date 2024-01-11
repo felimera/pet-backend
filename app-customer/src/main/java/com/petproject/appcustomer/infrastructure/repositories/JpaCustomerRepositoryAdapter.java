@@ -70,4 +70,10 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
         CustomerEntity customerEntity = jpaCustomerRepository.getCustomerByUserId(user.getId()).orElseThrow();
         return CustomerMapper.INSTANCE.toDomainModel(customerEntity);
     }
+
+    @Override
+    public CustomerDTO getCustomerByEmail(String email) {
+        CustomerEntity customerEntity = jpaCustomerRepository.findOneByEmail(email).orElseThrow();
+        return CustomerMapper.INSTANCE.toDomainModel(customerEntity);
+    }
 }

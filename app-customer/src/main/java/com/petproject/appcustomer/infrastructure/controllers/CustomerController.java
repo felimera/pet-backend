@@ -38,4 +38,9 @@ public class CustomerController {
     public ResponseEntity<Object> getCustomerByEmailUser(@RequestParam(name = "email") String email) {
         return ResponseEntity.ok(customerService.getCustomerByEmailUser(email));
     }
+
+    @GetMapping
+    public ResponseEntity<Object> getCustomerByEmail(@RequestParam(name = "email") String email) {
+        return ResponseEntity.ok(customerService.getCustomerByEmail(email));
+    }
 }

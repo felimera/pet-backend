@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface JpaCustomerRepository extends JpaRepository<CustomerEntity,Integer> {
+public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Integer> {
     @Query("select c from  CustomerEntity c where c.userId=:idUser")
-    Optional<CustomerEntity>getCustomerByUserId(Integer idUser);
+    Optional<CustomerEntity> getCustomerByUserId(Integer idUser);
+
+    Optional<CustomerEntity> findOneByEmail(String email);
 }

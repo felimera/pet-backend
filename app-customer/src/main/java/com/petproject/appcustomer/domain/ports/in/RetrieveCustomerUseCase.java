@@ -10,4 +10,6 @@ public interface RetrieveCustomerUseCase {
     List<CustomerDTO> getAllCustomer();
 
     CustomerDTO getCustomerByEmailUser(String email);
+
+    CustomerDTO getCustomerByEmail(String email);
 }

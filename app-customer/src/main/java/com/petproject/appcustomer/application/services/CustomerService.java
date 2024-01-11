@@ -43,6 +43,11 @@ public class CustomerService implements CreateCustomerUseCase, DeleteCustomerUse
     }
 
     @Override
+    public CustomerDTO getCustomerByEmail(String email) {
+        return retrieveCustomerUseCase.getCustomerByEmail(email);
+    }
+
+    @Override
     public CustomerDTO updateCustomer(Integer id, CustomerDTO customerDTO) {
         return updateCustomerUseCase.updateCustomer(id, customerDTO);
     }
