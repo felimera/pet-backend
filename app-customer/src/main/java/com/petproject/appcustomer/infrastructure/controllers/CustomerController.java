@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping(path = "api/customer")
+@CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class CustomerController {
 
