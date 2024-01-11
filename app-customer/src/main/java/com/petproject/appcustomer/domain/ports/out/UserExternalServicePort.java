@@ -1,8 +1,8 @@
 package com.petproject.appcustomer.domain.ports.out;
 
-import com.petproject.appcustomer.domain.models.out.JsonPlaceHolderUser;
+import com.petproject.appcustomer.domain.models.in.UserEntity;
 
 public interface UserExternalServicePort {
 
-    JsonPlaceHolderUser getUserByEmail(String email);
+    UserEntity getUserByEmail(String email);
 }

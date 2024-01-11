@@ -1,13 +1,11 @@
-package com.petproject.appcustomer.domain.models.out;
+package com.petproject.appcustomer.domain.models.in;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
-public class JsonPlaceHolderUser {
+public class UserEntity {
     private Integer id;
     private String name;
     private String email;
