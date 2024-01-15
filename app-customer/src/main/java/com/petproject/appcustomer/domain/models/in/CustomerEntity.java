@@ -28,7 +28,7 @@ public class CustomerEntity {
     @Column(name = "cus_email")
     private String email;
     @Column(name = "cus_is_older")
-    private Boolean isOlder;
+    private String isOlder;
     @Column(name = "cus_user_id")
     private Integer userId;
 }
