@@ -23,4 +23,8 @@ public class CadenaUtil {
                 .map(err -> KeyValueExceptionsMessage.builder().attributeName(err.getField()).attributeValue(err.getDefaultMessage()).build())
                 .toList();
     }
+
+    public static String convertTrueFalse(Boolean value) {
+        return value.equals(Boolean.TRUE) ? "T" : "F";
+    }
 }
