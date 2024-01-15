@@ -5,8 +5,10 @@ import com.petproject.appcustomer.domain.models.in.UserEntity;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
 import com.petproject.appcustomer.domain.ports.out.UserExternalServicePort;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
+import com.petproject.appcustomer.infrastructure.exception.BusinessException;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.CustomerMapper;
+import com.petproject.appcustomer.infrastructure.util.CadenaUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,9 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
 
     @Override
     public CustomerDTO save(CustomerDTO customerDTO) {
+        if (isExistEmailCustomer(customerDTO.getEmail())) {
+            throw new BusinessException("415", HttpStatus.BAD_REQUEST, "The email already exists.");
+        }
         CustomerEntity newCustomerEntity = CustomerMapper.INSTANCE.fromDomainModel(customerDTO);
         CustomerEntity savedCustomerEntity = jpaCustomerRepository.save(newCustomerEntity);
         return CustomerMapper.INSTANCE.toDomainModel(savedCustomerEntity);
@@ -48,7 +53,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
             oldCustomerEntityOptional.get().setFirstName(dto.getFirstName());
             oldCustomerEntityOptional.get().setLastName(dto.getLastName());
             oldCustomerEntityOptional.get().setPhone(dto.getPhone());
-            oldCustomerEntityOptional.get().setIsOlder(dto.getIsOlder());
+            oldCustomerEntityOptional.get().setIsOlder(CadenaUtil.convertTrueFalse(dto.getIsOlder()));
 
             CustomerEntity savedCustomerEntity = jpaCustomerRepository.save(oldCustomerEntityOptional.get());
             return CustomerMapper.INSTANCE.toDomainModel(savedCustomerEntity);
@@ -75,5 +80,10 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
     public CustomerDTO getCustomerByEmail(String email) {
         CustomerEntity customerEntity = jpaCustomerRepository.findOneByEmail(email).orElseThrow();
         return CustomerMapper.INSTANCE.toDomainModel(customerEntity);
+    }
+
+    public boolean isExistEmailCustomer(String email) {
+        Optional<CustomerEntity> customerEntityOptional = jpaCustomerRepository.findOneByEmail(email);
+        return customerEntityOptional.isPresent();
     }
 }
