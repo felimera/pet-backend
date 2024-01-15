@@ -36,6 +36,5 @@ public class CustomerDTO {
     private String email;
     @NotNull(message = "The customer's 'is Older' cannot be null.")
     private Boolean isOlder;
-    @NotNull(message = "The customer's user id cannot be null.")
     private Integer userId;
 }
