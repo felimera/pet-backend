@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SignUpDto {
-    private String nombres;
+    private String name;
     private String email;
     private String password;
 }
