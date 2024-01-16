@@ -2,9 +2,11 @@ package com.petproject.appcustomer.infrastructure.repositories;
 
 import com.petproject.appcustomer.domain.models.in.CustomerEntity;
 import com.petproject.appcustomer.domain.models.in.UserEntity;
+import com.petproject.appcustomer.domain.models.in.enums.Role;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
 import com.petproject.appcustomer.domain.ports.out.UserExternalServicePort;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
+import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;
 import com.petproject.appcustomer.infrastructure.exception.BusinessException;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.CustomerMapper;
@@ -90,6 +92,17 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
             customerEntity.setFirstName(CadenaUtil.toUppercase(customerEntity.getFirstName()));
             customerEntity.setLastName(CadenaUtil.toUppercase(customerEntity.getLastName()));
         });
+        return customerEntities.stream().map(CustomerMapper.INSTANCE::toDomainModel).toList();
+    }
+
+    @Override
+    public List<CustomerDTO> getMultipleParameter(CustomerSearch customerSearch) {
+        List<Integer> integerList = userExternalServicePort.getUserByRole(Role.A.name()).stream().map(UserEntity::getId).toList();
+        customerSearch.setIds(integerList);
+        List<CustomerEntity> customerEntities = jpaCustomerRepository.getCustomerMultipleParameter(customerSearch);
+        if (customerEntities.isEmpty())
+            throw new NotFoundException("No customer records found.", "201-01", HttpStatus.NOT_FOUND);
+
         return customerEntities.stream().map(CustomerMapper.INSTANCE::toDomainModel).toList();
     }
 

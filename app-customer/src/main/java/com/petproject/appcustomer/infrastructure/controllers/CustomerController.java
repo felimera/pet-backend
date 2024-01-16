@@ -1,7 +1,9 @@
 package com.petproject.appcustomer.infrastructure.controllers;
 
 import com.petproject.appcustomer.application.services.CustomerService;
+import com.petproject.appcustomer.domain.models.in.enums.Role;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
+import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;
 import com.petproject.appcustomer.infrastructure.exception.ResponseMessageException;
 import com.petproject.appcustomer.infrastructure.util.CadenaUtil;
 import jakarta.validation.Valid;
@@ -48,5 +50,25 @@ public class CustomerController {
     @GetMapping(path = "/filterrole")
     public ResponseEntity<Object> getAllCustomerByRole(@RequestParam(name = "role") String role) {
         return ResponseEntity.ok(customerService.getAllCustomerByRole(role));
+    }
+
+    @GetMapping(path = "/searchparameter")
+    public ResponseEntity<Object> getMultipleParameter(
+            @RequestParam(name = "firstName", required = false) String firstName,
+            @RequestParam(name = "lastName", required = false) String lastName,
+            @RequestParam(name = "phone", required = false) String phone,
+            @RequestParam(name = "email", required = false) String email,
+            @RequestParam(name = "role") String role
+    ) {
+        log.info("Search Customer : {}", firstName);
+        CustomerSearch customerSearch = CustomerSearch
+                .builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .phone(phone)
+                .role(Role.getName(role))
+                .build();
+        return ResponseEntity.ok(customerService.getMultipleParameter(customerSearch));
     }
 }

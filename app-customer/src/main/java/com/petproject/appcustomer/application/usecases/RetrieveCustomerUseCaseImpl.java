@@ -3,6 +3,7 @@ package com.petproject.appcustomer.application.usecases;
 import com.petproject.appcustomer.domain.ports.in.RetrieveCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
+import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -35,5 +36,10 @@ public class RetrieveCustomerUseCaseImpl implements RetrieveCustomerUseCase {
     @Override
     public List<CustomerDTO> getAllCustomerByRole(String role) {
         return customerRepositoryPort.getAllCustomerByRole(role);
+    }
+
+    @Override
+    public List<CustomerDTO> getMultipleParameter(CustomerSearch customerSearch) {
+        return customerRepositoryPort.getMultipleParameter(customerSearch);
     }
 }

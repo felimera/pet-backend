@@ -5,6 +5,7 @@ import com.petproject.appcustomer.domain.ports.in.DeleteCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.in.RetrieveCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.in.UpdateCustomerUseCase;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
+import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -50,6 +51,11 @@ public class CustomerService implements CreateCustomerUseCase, DeleteCustomerUse
     @Override
     public List<CustomerDTO> getAllCustomerByRole(String role) {
         return retrieveCustomerUseCase.getAllCustomerByRole(role);
+    }
+
+    @Override
+    public List<CustomerDTO> getMultipleParameter(CustomerSearch customerSearch) {
+        return retrieveCustomerUseCase.getMultipleParameter(customerSearch);
     }
 
     @Override

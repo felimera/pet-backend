@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Integer> {
+public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Integer>, JpaCustomerCriteriaRepository {
     @Query("select c from  CustomerEntity c where c.userId=:idUser")
     Optional<CustomerEntity> getCustomerByUserId(Integer idUser);
 
