@@ -31,4 +31,9 @@ public class RetrieveCustomerUseCaseImpl implements RetrieveCustomerUseCase {
     public CustomerDTO getCustomerByEmail(String email) {
         return customerRepositoryPort.getCustomerByEmail(email);
     }
+
+    @Override
+    public List<CustomerDTO> getAllCustomerByRole(String role) {
+        return customerRepositoryPort.getAllCustomerByRole(role);
+    }
 }

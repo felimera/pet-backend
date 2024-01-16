@@ -82,6 +82,17 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
         return CustomerMapper.INSTANCE.toDomainModel(customerEntity);
     }
 
+    @Override
+    public List<CustomerDTO> getAllCustomerByRole(String role) {
+        List<Integer> integerList = userExternalServicePort.getUserByRole(role).stream().map(UserEntity::getId).toList();
+        List<CustomerEntity> customerEntities = jpaCustomerRepository.getCustomerByListId(integerList);
+        customerEntities.forEach(customerEntity -> {
+            customerEntity.setFirstName(CadenaUtil.toUppercase(customerEntity.getFirstName()));
+            customerEntity.setLastName(CadenaUtil.toUppercase(customerEntity.getLastName()));
+        });
+        return customerEntities.stream().map(CustomerMapper.INSTANCE::toDomainModel).toList();
+    }
+
     public boolean isExistEmailCustomer(String email) {
         Optional<CustomerEntity> customerEntityOptional = jpaCustomerRepository.findOneByEmail(email);
         return customerEntityOptional.isPresent();

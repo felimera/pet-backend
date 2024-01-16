@@ -19,4 +19,6 @@ public interface CustomerRepositoryPort {
     CustomerDTO getCustomerByEmailUser(String emailUser);
 
     CustomerDTO getCustomerByEmail(String email);
+
+    List<CustomerDTO>getAllCustomerByRole(String role);
 }

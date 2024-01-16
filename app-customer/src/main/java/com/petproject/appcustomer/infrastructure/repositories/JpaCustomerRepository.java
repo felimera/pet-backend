@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,4 +14,7 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerEntity, Int
     Optional<CustomerEntity> getCustomerByUserId(Integer idUser);
 
     Optional<CustomerEntity> findOneByEmail(String email);
+
+    @Query("select c from CustomerEntity c where c.userId in :ids")
+    List<CustomerEntity> getCustomerByListId(List<Integer> ids);
 }

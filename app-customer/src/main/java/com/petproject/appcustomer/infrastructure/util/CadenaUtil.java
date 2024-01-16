@@ -27,4 +27,12 @@ public class CadenaUtil {
     public static String convertTrueFalse(Boolean value) {
         return value.equals(Boolean.TRUE) ? "T" : "F";
     }
+
+    public static String toUppercase(String valor) {
+        if (valor == null || valor.isEmpty()) {
+            return valor;
+        } else {
+            return  valor.toUpperCase().charAt(0) + valor.substring(1, valor.length()).toLowerCase();
+        }
+    }
 }

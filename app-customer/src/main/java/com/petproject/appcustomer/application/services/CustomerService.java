@@ -48,6 +48,11 @@ public class CustomerService implements CreateCustomerUseCase, DeleteCustomerUse
     }
 
     @Override
+    public List<CustomerDTO> getAllCustomerByRole(String role) {
+        return retrieveCustomerUseCase.getAllCustomerByRole(role);
+    }
+
+    @Override
     public CustomerDTO updateCustomer(Integer id, CustomerDTO customerDTO) {
         return updateCustomerUseCase.updateCustomer(id, customerDTO);
     }

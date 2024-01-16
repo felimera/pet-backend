@@ -44,4 +44,9 @@ public class CustomerController {
     public ResponseEntity<Object> getCustomerByEmail(@RequestParam(name = "email") String email) {
         return ResponseEntity.ok(customerService.getCustomerByEmail(email));
     }
+
+    @GetMapping(path = "/filterrole")
+    public ResponseEntity<Object> getAllCustomerByRole(@RequestParam(name = "role") String role) {
+        return ResponseEntity.ok(customerService.getAllCustomerByRole(role));
+    }
 }
