@@ -1,5 +1,6 @@
 package com.petproject.appcustomer.domain.models.in;
 
+import com.petproject.appcustomer.infrastructure.util.config.BooleanConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,5 +23,6 @@ public class ColorEntity {
     @Column(name = "col_code")
     private String code;
     @Column(name = "col_active")
-    private String active;
+    @Convert(converter = BooleanConverter.class)
+    private Boolean active;
 }
