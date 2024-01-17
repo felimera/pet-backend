@@ -1,6 +1,6 @@
 package com.petproject.appcustomer.infrastructure.config;
 
-import com.petproject.appcustomer.application.services.CustomerService;
+import com.petproject.appcustomer.application.services.in.CustomerService;
 import com.petproject.appcustomer.application.usecases.CreateCustomerUseCaseImpl;
 import com.petproject.appcustomer.application.usecases.DeleteCustomerUseCaseImpl;
 import com.petproject.appcustomer.application.usecases.RetrieveCustomerUseCaseImpl;

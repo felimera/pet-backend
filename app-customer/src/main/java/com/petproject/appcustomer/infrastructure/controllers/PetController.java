@@ -1,6 +1,6 @@
 package com.petproject.appcustomer.infrastructure.controllers;
 
-import com.petproject.appcustomer.application.services.PetService;
+import com.petproject.appcustomer.application.services.in.PetService;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import com.petproject.appcustomer.infrastructure.exception.ResponseMessageException;
 import com.petproject.appcustomer.infrastructure.util.CadenaUtil;

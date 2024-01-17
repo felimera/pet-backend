@@ -1,6 +1,6 @@
 package com.petproject.appcustomer.infrastructure.controllers;
 
-import com.petproject.appcustomer.application.services.CustomerService;
+import com.petproject.appcustomer.application.services.in.CustomerService;
 import com.petproject.appcustomer.domain.models.in.enums.Role;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;
@@ -60,7 +60,11 @@ public class CustomerController {
             @RequestParam(name = "email", required = false) String email,
             @RequestParam(name = "role") String role
     ) {
-        log.info("Search Customer : {}", firstName);
+        log.info("Search FirstName : {}", firstName);
+        log.info("Search LastName : {}", lastName);
+        log.info("Search Phone : {}", phone);
+        log.info("Search Email : {}", email);
+        log.info("Search Role : {}", role);
         CustomerSearch customerSearch = CustomerSearch
                 .builder()
                 .firstName(firstName)

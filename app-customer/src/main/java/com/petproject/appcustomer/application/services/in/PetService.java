@@ -1,4 +1,4 @@
-package com.petproject.appcustomer.application.services;
+package com.petproject.appcustomer.application.services.in;
 
 import com.petproject.appcustomer.domain.ports.in.CreatePetUseCase;
 import com.petproject.appcustomer.domain.ports.in.DeletePetUseCase;
