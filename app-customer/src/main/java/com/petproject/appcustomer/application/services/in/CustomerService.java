@@ -1,9 +1,9 @@
 package com.petproject.appcustomer.application.services.in;
 
-import com.petproject.appcustomer.domain.ports.in.CreateCustomerUseCase;
-import com.petproject.appcustomer.domain.ports.in.DeleteCustomerUseCase;
-import com.petproject.appcustomer.domain.ports.in.RetrieveCustomerUseCase;
-import com.petproject.appcustomer.domain.ports.in.UpdateCustomerUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.CreateCustomerUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.DeleteCustomerUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.RetrieveCustomerUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.UpdateCustomerUseCase;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;
 import lombok.AllArgsConstructor;

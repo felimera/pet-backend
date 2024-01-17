@@ -1,4 +1,4 @@
-package com.petproject.appcustomer.domain.ports.in;
+package com.petproject.appcustomer.domain.ports.in.internal;
 
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 

@@ -1,6 +1,6 @@
 package com.petproject.appcustomer.application.usecases;
 
-import com.petproject.appcustomer.domain.ports.in.RetrieveCustomerUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.RetrieveCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.CustomerDTO;
 import com.petproject.appcustomer.infrastructure.entities.search.CustomerSearch;

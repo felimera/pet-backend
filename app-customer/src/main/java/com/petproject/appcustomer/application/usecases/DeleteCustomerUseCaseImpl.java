@@ -1,6 +1,6 @@
 package com.petproject.appcustomer.application.usecases;
 
-import com.petproject.appcustomer.domain.ports.in.DeleteCustomerUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.DeleteCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;
 import lombok.AllArgsConstructor;
 

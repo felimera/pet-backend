@@ -1,6 +1,6 @@
 package com.petproject.appcustomer.application.usecases;
 
-import com.petproject.appcustomer.domain.ports.in.RetrievePetUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.RetrievePetUseCase;
 import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import lombok.AllArgsConstructor;

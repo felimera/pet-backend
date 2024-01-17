@@ -1,9 +1,9 @@
 package com.petproject.appcustomer.application.services.in;
 
-import com.petproject.appcustomer.domain.ports.in.CreatePetUseCase;
-import com.petproject.appcustomer.domain.ports.in.DeletePetUseCase;
-import com.petproject.appcustomer.domain.ports.in.RetrievePetUseCase;
-import com.petproject.appcustomer.domain.ports.in.UpdatePetUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.CreatePetUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.DeletePetUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.RetrievePetUseCase;
+import com.petproject.appcustomer.domain.ports.in.internal.UpdatePetUseCase;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import lombok.AllArgsConstructor;
 
