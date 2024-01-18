@@ -1,4 +1,4 @@
-package com.petproject.appcustomer.application.usecases;
+package com.petproject.appcustomer.application.usecases.in.customer;
 
 import com.petproject.appcustomer.domain.ports.in.internal.RetrieveCustomerUseCase;
 import com.petproject.appcustomer.domain.ports.out.CustomerRepositoryPort;

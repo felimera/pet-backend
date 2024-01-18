@@ -1,4 +1,4 @@
-package com.petproject.appcustomer.application.usecases;
+package com.petproject.appcustomer.application.usecases.in.pet;
 
 import com.petproject.appcustomer.domain.ports.in.internal.UpdatePetUseCase;
 import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
