@@ -1,5 +1,6 @@
 package com.petproject.appcustomer.domain.models.in;
 
+import com.petproject.appcustomer.infrastructure.util.config.BooleanConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +22,7 @@ public class BodySizeEntity {
     private String name;
     @Column(name = "bs_description")
     private String description;
+    @Column(name = "bs_active")
+    @Convert(converter = BooleanConverter.class)
+    private Boolean active;
 }

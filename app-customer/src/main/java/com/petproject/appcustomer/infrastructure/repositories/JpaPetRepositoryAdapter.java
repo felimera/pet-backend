@@ -5,6 +5,7 @@ import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.PetMapper;
+import com.petproject.appcustomer.infrastructure.repositories.bodysize.JpaBodySizeEntityRepository;
 import com.petproject.appcustomer.infrastructure.repositories.color.JpaColorEntityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
