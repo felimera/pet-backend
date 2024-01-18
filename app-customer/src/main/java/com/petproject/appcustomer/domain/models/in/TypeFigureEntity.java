@@ -1,5 +1,6 @@
 package com.petproject.appcustomer.domain.models.in;
 
+import com.petproject.appcustomer.infrastructure.util.config.BooleanConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +22,7 @@ public class TypeFigureEntity {
     private String name;
     @Column(name = "tf_description")
     private String description;
+    @Column(name = "tf_active")
+    @Convert(converter = BooleanConverter.class)
+    private Boolean active;
 }

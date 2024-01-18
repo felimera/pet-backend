@@ -5,6 +5,7 @@ import com.petproject.appcustomer.domain.ports.out.BodySizeRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.BodySizeDTO;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.BodySizeMapper;
+import com.petproject.appcustomer.infrastructure.util.Constants;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ public class JpaBodySizeEntityRepositoryAdapter implements BodySizeRepositoryPor
     public List<BodySizeDTO> getAllBodySize() {
         List<BodySizeEntity> bodySizeEntities = jpaBodySizeEntityRepository.getAllBodySize(Boolean.TRUE);
         if (bodySizeEntities.isEmpty())
-            throw new NotFoundException("No customer records found.", "201-01", HttpStatus.NOT_FOUND);
+            throw new NotFoundException(Constants.MESSAGE_NOT_FOUND, "201-01", HttpStatus.NOT_FOUND);
         return bodySizeEntities.stream().map(BodySizeMapper.INSTANCE::toDomainModel).toList();
     }
 }

@@ -7,6 +7,7 @@ import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.PetMapper;
 import com.petproject.appcustomer.infrastructure.repositories.bodysize.JpaBodySizeEntityRepository;
 import com.petproject.appcustomer.infrastructure.repositories.color.JpaColorEntityRepository;
+import com.petproject.appcustomer.infrastructure.repositories.typefigure.JpaTypeFigureEntityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
