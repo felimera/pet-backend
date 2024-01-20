@@ -21,8 +21,6 @@ public class PetDTO {
     @Size(max = 50, message = "The pet's name only has a maximum of 50 characters.")
     @Pattern(regexp = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$", message = "It is not a valid name.")
     private String name;
-    @NotEmpty(message = "The pet's photo cannot be empty.")
-    @NotNull(message = "The pet's photo cannot be null.")
     @Size(max = 100, message = "The pet's photo only has a maximum of 100 characters.")
     private String photo;
     @NotEmpty(message = "The pet's birthdate cannot be empty.")
@@ -41,13 +39,15 @@ public class PetDTO {
     private String race;
     @NotEmpty(message = "The pet's weight cannot be empty.")
     @NotNull(message = "The pet's weight cannot be null.")
-    private String weight;
-    @NotEmpty(message = "The pet's weight cannot be empty.")
-    @NotNull(message = "The pet's weight cannot be null.")
     private String characteristicsExtremities;
 
     @NotNull(message = "The pet's Customer cannot be null.")
     private Integer idCustomerEntity;
+    @NotEmpty(message = "The pet's weight cannot be empty.")
+    @NotNull(message = "The pet's weight cannot be null.")
+    private String weightValue;
+    @NotNull(message = "The pet's weight units cannot be null.")
+    private Integer idMassMeasurementUnitsEntity;
     @NotNull(message = "The pet's Hair Color cannot be null.")
     private Integer idHairColorEntity;
     @NotNull(message = "The pet's Body Size cannot be null.")
@@ -56,4 +56,6 @@ public class PetDTO {
     private Integer idTypeFigureEntity;
     @NotNull(message = "The pet's Eye Color cannot be null.")
     private Integer idEyeColorEntity;
+    @NotNull(message = "The pet category cannot be null.")
+    private Integer idPetCategoryEntity;
 }

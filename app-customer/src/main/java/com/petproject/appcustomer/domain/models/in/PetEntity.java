@@ -34,8 +34,6 @@ public class PetEntity {
     private String petCategory;
     @Column(name = "pe_race")
     private String race;
-    @Column(name = "pe_weight")
-    private String weight;
     @Column(name = "pe_characteristics_extremities")
     private String characteristicsExtremities;
 
@@ -43,6 +41,12 @@ public class PetEntity {
     @JoinColumn(name = "pe_customer_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private CustomerEntity customerEntity;
+    @Column(name = "pe_weight_value")
+    private String weightValue;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pe_weight_mmu_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private MassMeasurementUnitsEntity massMeasurementUnitsEntity;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pe_hair_color_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -59,4 +63,8 @@ public class PetEntity {
     @JoinColumn(name = "pe_eye_color_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ColorEntity eyeColorEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pe_pet_category_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private PetCategoryEntity petCategoryEntity;
 }
