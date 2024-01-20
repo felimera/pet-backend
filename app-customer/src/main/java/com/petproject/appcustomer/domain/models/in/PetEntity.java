@@ -30,8 +30,6 @@ public class PetEntity {
     private String age;
     @Column(name = "pe_gender")
     private String gender;
-    @Column(name = "pe_pet_category")
-    private String petCategory;
     @Column(name = "pe_race")
     private String race;
     @Column(name = "pe_characteristics_extremities")

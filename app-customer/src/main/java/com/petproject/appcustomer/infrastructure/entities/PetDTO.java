@@ -31,9 +31,6 @@ public class PetDTO {
     @NotNull(message = "The pet's gender cannot be null.")
     @Size(min = 1, max = 1, message = "The pet's gender only has a maximum of 1 characters.")
     private String gender;
-    @NotEmpty(message = "The pet's category cannot be empty.")
-    @NotNull(message = "The pet's category cannot be null.")
-    private String petCategory;
     @NotEmpty(message = "The pet's race cannot be empty.")
     @NotNull(message = "The pet's race cannot be null.")
     private String race;

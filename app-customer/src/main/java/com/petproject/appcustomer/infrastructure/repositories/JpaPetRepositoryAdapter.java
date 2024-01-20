@@ -69,7 +69,6 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
             optionalPetEntity.get().setBirthdate(LocalDate.parse(dto.getBirthdate()));
             optionalPetEntity.get().setAge(dto.getAge());
             optionalPetEntity.get().setGender(dto.getGender());
-            optionalPetEntity.get().setPetCategory(dto.getPetCategory());
             optionalPetEntity.get().setRace(dto.getRace());
             optionalPetEntity.get().setWeightValue(dto.getWeightValue());
             optionalPetEntity.get().setCharacteristicsExtremities(dto.getCharacteristicsExtremities());
