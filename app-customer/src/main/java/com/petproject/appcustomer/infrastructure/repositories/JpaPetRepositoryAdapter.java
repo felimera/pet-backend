@@ -7,6 +7,8 @@ import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.PetMapper;
 import com.petproject.appcustomer.infrastructure.repositories.bodysize.JpaBodySizeEntityRepository;
 import com.petproject.appcustomer.infrastructure.repositories.color.JpaColorEntityRepository;
+import com.petproject.appcustomer.infrastructure.repositories.massunits.JpaMassMeasurementUnitsRepository;
+import com.petproject.appcustomer.infrastructure.repositories.petcategory.JpaPetCategoryRepository;
 import com.petproject.appcustomer.infrastructure.repositories.typefigure.JpaTypeFigureEntityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,8 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
     private final JpaColorEntityRepository jpaColorEntityRepository;
     private final JpaBodySizeEntityRepository jpaBodySizeEntityRepository;
     private final JpaTypeFigureEntityRepository jpaTypeFigureEntityRepository;
+    private final JpaMassMeasurementUnitsRepository jpaMassMeasurementUnitsRepository;
+    private final JpaPetCategoryRepository jpaPetCategoryRepository;
 
     @Override
     public PetDTO save(PetDTO dto) {
@@ -36,6 +40,8 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
         jpaBodySizeEntityRepository.findById(dto.getIdBodySizeEntity()).ifPresent(newPetEntity::setBodySizeEntity);
         jpaTypeFigureEntityRepository.findById(dto.getIdTypeFigureEntity()).ifPresent(newPetEntity::setTypeFigureEntity);
         jpaColorEntityRepository.findById(dto.getIdEyeColorEntity()).ifPresent(newPetEntity::setEyeColorEntity);
+        jpaMassMeasurementUnitsRepository.findById(dto.getIdMassMeasurementUnitsEntity()).ifPresent(newPetEntity::setMassMeasurementUnitsEntity);
+        jpaPetCategoryRepository.findById(dto.getIdPetCategoryEntity()).ifPresent(newPetEntity::setPetCategoryEntity);
 
         PetEntity savedPetEntity = jpaPetRepository.save(newPetEntity);
         return PetMapper.INSTANCE.toDomainModel(savedPetEntity);
@@ -65,13 +71,16 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
             optionalPetEntity.get().setGender(dto.getGender());
             optionalPetEntity.get().setPetCategory(dto.getPetCategory());
             optionalPetEntity.get().setRace(dto.getRace());
-            optionalPetEntity.get().setWeight(dto.getWeight());
+            optionalPetEntity.get().setWeightValue(dto.getWeightValue());
             optionalPetEntity.get().setCharacteristicsExtremities(dto.getCharacteristicsExtremities());
 
             jpaColorEntityRepository.findById(dto.getIdHairColorEntity()).ifPresent(colorEntity -> optionalPetEntity.get().setHairColorEntity(colorEntity));
             jpaBodySizeEntityRepository.findById(dto.getIdBodySizeEntity()).ifPresent(bodySizeEntity -> optionalPetEntity.get().setBodySizeEntity(bodySizeEntity));
             jpaTypeFigureEntityRepository.findById(dto.getIdTypeFigureEntity()).ifPresent(typeFigureEntity -> optionalPetEntity.get().setTypeFigureEntity(typeFigureEntity));
             jpaColorEntityRepository.findById(dto.getIdEyeColorEntity()).ifPresent(colorEntity -> optionalPetEntity.get().setEyeColorEntity(colorEntity));
+            jpaCustomerRepository.findById(dto.getIdCustomerEntity()).ifPresent(customerEntity -> optionalPetEntity.get().setCustomerEntity(customerEntity));
+            jpaMassMeasurementUnitsRepository.findById(dto.getIdMassMeasurementUnitsEntity()).ifPresent(massMeasurementUnitsEntity -> optionalPetEntity.get().setMassMeasurementUnitsEntity(massMeasurementUnitsEntity));
+            jpaPetCategoryRepository.findById(dto.getIdPetCategoryEntity()).ifPresent(petCategoryEntity -> optionalPetEntity.get().setPetCategoryEntity(petCategoryEntity));
 
             PetEntity updatePetEntity = jpaPetRepository.save(optionalPetEntity.get());
             return PetMapper.INSTANCE.toDomainModel(updatePetEntity);
