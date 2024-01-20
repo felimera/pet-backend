@@ -23,8 +23,7 @@ public class PetDTO {
     private String name;
     @Size(max = 100, message = "The pet's photo only has a maximum of 100 characters.")
     private String photo;
-    @NotEmpty(message = "The pet's birthdate cannot be empty.")
-    @Pattern(regexp = Constants.REGULARPHRASE_BIRTHDATE, message = "Incorrect date format. Ex: yyyy-mm-dd.")
+    @Pattern(regexp = Constants.REGULARPHRASE_BIRTHDATE, message = "Incorrect date format. Ex: yyyy-MM-dd.")
     private String birthdate;
     private String age;
     @NotEmpty(message = "The pet's gender cannot be empty.")
