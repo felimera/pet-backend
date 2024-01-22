@@ -2,9 +2,12 @@ package com.project.appmedia.service.implementation;
 
 import com.project.appmedia.exception.NotFoundException;
 import com.project.appmedia.exception.RequestException;
+import com.project.appmedia.service.PhotoPetService;
 import com.project.appmedia.service.StorageService;
 import com.project.appmedia.util.Constants;
 import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -27,6 +30,13 @@ public class FileSystemStorageService implements StorageService {
     private String mediaLocation;
     private Path rootLocation;
 
+    private PhotoPetService photoPetService;
+
+    @Autowired
+    public FileSystemStorageService(PhotoPetService photoPetService) {
+        this.photoPetService = photoPetService;
+    }
+
     @Override
     @PostConstruct
     public void init() throws IOException {
@@ -35,6 +45,7 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
+    @Transactional
     public String store(MultipartFile file) {
         try {
             if (file.isEmpty())
@@ -49,6 +60,9 @@ public class FileSystemStorageService implements StorageService {
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
             }
+
+            photoPetService.createOnePhotoPet(filename, destinationFile);
+
             return filename;
         } catch (IOException e) {
             throw new RequestException(Constants.CODE_404_02, "Failed to store file." + e);
