@@ -25,12 +25,12 @@ public class MediaController {
     @PostMapping(path = "/upload")
     public Map<String, String> uploadFile(@RequestParam(name = "file") MultipartFile multipartFile) {
         String path = storageService.store(multipartFile);
-        String host = request.getRequestURI().toString().replace(request.getRequestURI(), "");
+        String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
-                .path("/media/")
+                .path("/api/media/")
                 .path(path)
-                .toString();
+                .toUriString();
 
         return Map.of("url", url);
     }
