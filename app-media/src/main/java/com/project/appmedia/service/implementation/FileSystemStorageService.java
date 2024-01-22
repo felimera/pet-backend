@@ -46,7 +46,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     @Transactional
-    public String store(MultipartFile file) {
+    public String store(MultipartFile file, Integer idPet) {
         try {
             if (file.isEmpty())
                 throw new RequestException(Constants.CODE_404_02, "Failed to store empty file.");
@@ -61,7 +61,7 @@ public class FileSystemStorageService implements StorageService {
                 Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
             }
 
-            photoPetService.createOnePhotoPet(filename, destinationFile);
+            photoPetService.createOnePhotoPet(filename, destinationFile, idPet);
 
             return filename;
         } catch (IOException e) {

@@ -9,7 +9,7 @@ public interface StorageService {
 
     void init() throws IOException;
 
-    String store(MultipartFile file);
+    String store(MultipartFile file, Integer idPet);
 
     Resource loadAsResource(String filename);
 }

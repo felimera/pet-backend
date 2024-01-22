@@ -22,9 +22,11 @@ public class MediaController {
     private final StorageService storageService;
     private final HttpServletRequest request;
 
-    @PostMapping(path = "/upload")
-    public Map<String, String> uploadFile(@RequestParam(name = "file") MultipartFile multipartFile) {
-        String path = storageService.store(multipartFile);
+    @PostMapping(path = "/upload/{idPet}")
+    public Map<String, String> uploadFile(
+            @RequestParam(name = "file") MultipartFile multipartFile,
+            @PathVariable(name = "idPet") String idPet) {
+        String path = storageService.store(multipartFile, Integer.parseInt(idPet));
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)

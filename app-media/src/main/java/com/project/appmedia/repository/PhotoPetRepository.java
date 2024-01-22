@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PhotoPetRepository extends JpaRepository<PhotoPet, Integer> {
+
+    boolean existsByName(String name);
 }
