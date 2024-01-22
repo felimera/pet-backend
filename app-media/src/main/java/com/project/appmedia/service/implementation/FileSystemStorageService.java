@@ -1,5 +1,6 @@
 package com.project.appmedia.service.implementation;
 
+import com.project.appmedia.controller.dto.PhotoPetDTO;
 import com.project.appmedia.exception.NotFoundException;
 import com.project.appmedia.exception.RequestException;
 import com.project.appmedia.service.PhotoPetService;
@@ -82,5 +83,10 @@ public class FileSystemStorageService implements StorageService {
         } catch (MalformedURLException e) {
             throw new RequestException(Constants.CODE_404_02, "Could not read file : " + filename);
         }
+    }
+
+    @Override
+    public void storeList(PhotoPetDTO dto) {
+        dto.getMultipartFileList().forEach(multipartFile -> store(multipartFile, dto.getIdPet()));
     }
 }

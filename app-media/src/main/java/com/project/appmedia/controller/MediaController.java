@@ -1,10 +1,12 @@
 package com.project.appmedia.controller;
 
+import com.project.appmedia.controller.dto.PhotoPetDTO;
 import com.project.appmedia.service.StorageService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +25,7 @@ public class MediaController {
     private final HttpServletRequest request;
 
     @PostMapping(path = "/upload/{idPet}")
-    public Map<String, String> uploadFile(
+    public ResponseEntity<Map<String, String>> uploadFile(
             @RequestParam(name = "file") MultipartFile multipartFile,
             @PathVariable(name = "idPet") String idPet) {
         String path = storageService.store(multipartFile, Integer.parseInt(idPet));
@@ -34,7 +36,13 @@ public class MediaController {
                 .path(path)
                 .toUriString();
 
-        return Map.of("url", url);
+        return ResponseEntity.ok(Map.of("url", url));
+    }
+
+    @PostMapping(path = "upload/list")
+    public ResponseEntity<Object> uploadFileList(@RequestBody PhotoPetDTO dto) {
+        storageService.storeList(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping(path = "{filename:.+}")
