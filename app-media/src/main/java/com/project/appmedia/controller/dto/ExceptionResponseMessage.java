@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class MessageDto {
+public class ExceptionResponseMessage {
     private String code;
     private String message;
 }
