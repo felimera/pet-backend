@@ -1,10 +1,14 @@
 package com.project.appmedia.service.implementation;
 
+import com.project.appmedia.exception.NotFoundException;
+import com.project.appmedia.exception.RequestException;
 import com.project.appmedia.service.StorageService;
+import com.project.appmedia.util.Constants;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,7 +38,7 @@ public class FileSystemStorageService implements StorageService {
     public String store(MultipartFile file) {
         try {
             if (file.isEmpty())
-                throw new RuntimeException("Failed to store empty file.");
+                throw new RequestException(Constants.CODE_404_02, "Failed to store empty file.");
 
             String filename = file.getOriginalFilename();
             Path destinationFile = rootLocation
@@ -47,7 +51,7 @@ public class FileSystemStorageService implements StorageService {
             }
             return filename;
         } catch (IOException e) {
-            throw new RuntimeException("Failed to store file.", e);
+            throw new RequestException(Constants.CODE_404_02, "Failed to store file." + e);
         }
     }
 
@@ -60,9 +64,9 @@ public class FileSystemStorageService implements StorageService {
             if (resource.exists() || resource.isReadable())
                 return resource;
             else
-                throw new RuntimeException("Could not read file : " + filename);
+                throw new NotFoundException("Could not read file : " + filename, "404-01", HttpStatus.NOT_FOUND);
         } catch (MalformedURLException e) {
-            throw new RuntimeException("Could not read file : " + filename);
+            throw new RequestException(Constants.CODE_404_02, "Could not read file : " + filename);
         }
     }
 }
