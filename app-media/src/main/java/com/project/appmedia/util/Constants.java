@@ -10,4 +10,5 @@ public class Constants {
     public static final String T = "T";
 
     public static final String CODE_404_02 = "404-02";
+    public static final String MESSAGE_EXIST_DATA = "El nombre del registro ya existe.";
 }
