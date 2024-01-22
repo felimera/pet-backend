@@ -1,6 +1,6 @@
 package com.project.appmedia.service.implementation;
 
-import com.project.appmedia.PhotoPetRepository;
+import com.project.appmedia.repository.PhotoPetRepository;
 import com.project.appmedia.models.PhotoPet;
 import com.project.appmedia.service.PhotoPetService;
 import org.springframework.beans.factory.annotation.Autowired;

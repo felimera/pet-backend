@@ -1,4 +1,4 @@
-package com.project.appmedia;
+package com.project.appmedia.repository;
 
 import com.project.appmedia.models.PhotoPet;
 import org.springframework.data.jpa.repository.JpaRepository;
