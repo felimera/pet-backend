@@ -1,6 +1,7 @@
 package com.petproject.appcustomer.infrastructure.repositories;
 
 import com.petproject.appcustomer.domain.models.in.PetEntity;
+import com.petproject.appcustomer.domain.models.in.enums.Gender;
 import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
@@ -68,7 +69,7 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
             optionalPetEntity.get().setPhoto(dto.getPhoto());
             optionalPetEntity.get().setBirthdate(LocalDate.parse(dto.getBirthdate()));
             optionalPetEntity.get().setAge(dto.getAge());
-            optionalPetEntity.get().setGender(dto.getGender());
+            optionalPetEntity.get().setGender(Gender.getName(dto.getGender()));
             optionalPetEntity.get().setRace(dto.getRace());
             optionalPetEntity.get().setWeightValue(dto.getWeightValue());
             optionalPetEntity.get().setCharacteristicsExtremities(dto.getCharacteristicsExtremities());

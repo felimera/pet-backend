@@ -1,6 +1,8 @@
 package com.petproject.appcustomer.domain.models.in;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.petproject.appcustomer.domain.models.in.enums.Gender;
+import com.petproject.appcustomer.infrastructure.util.config.GenderConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +31,8 @@ public class PetEntity {
     @Column(name = "pe_age")
     private String age;
     @Column(name = "pe_gender")
-    private String gender;
+    @Convert(converter = GenderConverter.class)
+    private Gender gender;
     @Column(name = "pe_race")
     private String race;
     @Column(name = "pe_characteristics_extremities")
