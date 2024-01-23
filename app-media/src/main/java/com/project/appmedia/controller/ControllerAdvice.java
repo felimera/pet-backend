@@ -4,6 +4,8 @@ import com.project.appmedia.controller.dto.ExceptionResponseMessage;
 import com.project.appmedia.exception.BusinessException;
 import com.project.appmedia.exception.NotFoundException;
 import com.project.appmedia.exception.RequestException;
+import com.project.appmedia.exception.ResponseMessageException;
+import com.project.appmedia.models.exception.ExceptionControlMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +34,12 @@ public class ControllerAdvice {
     @ExceptionHandler(value = BusinessException.class)
     public ResponseEntity<ExceptionResponseMessage> businessExceptionHandler(BusinessException ex) {
         ExceptionResponseMessage error = ExceptionResponseMessage.builder().code(ex.getCode()).message(ex.getMessage()).build();
+        return new ResponseEntity<>(error, ex.getHttpStatus());
+    }
+
+    @ExceptionHandler(value = ResponseMessageException.class)
+    public ResponseEntity<ExceptionControlMessage> responseStatusExceptionHandler(ResponseMessageException ex) {
+        ExceptionControlMessage error = ExceptionControlMessage.builder().code(ex.getCode()).message(ex.getMessage()).keyValueExceptionsMessages(ex.getKeyValueExceptionsMessages()).build();
         return new ResponseEntity<>(error, ex.getHttpStatus());
     }
 }

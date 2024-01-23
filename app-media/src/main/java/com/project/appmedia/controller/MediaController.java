@@ -1,13 +1,11 @@
 package com.project.appmedia.controller;
 
-import com.project.appmedia.controller.dto.PhotoPetDTO;
 import com.project.appmedia.service.StorageService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,11 +24,10 @@ public class MediaController {
     private final StorageService storageService;
     private final HttpServletRequest request;
 
-    @PostMapping(path = "/upload/{idPet}")
-    public ResponseEntity<Map<String, String>> uploadFile(
-            @RequestParam(name = "file") MultipartFile multipartFile,
-            @PathVariable(name = "idPet") String idPet) {
-        String path = storageService.store(multipartFile, Integer.parseInt(idPet));
+    @PostMapping(path = "/upload")
+    public ResponseEntity<Map<String, String>> uploadFile(@RequestParam(name = "file") MultipartFile multipartFile) {
+        log.info("Add Photo : {}", multipartFile);
+        String path = storageService.store(multipartFile);
         String host = request.getRequestURL().toString().replace(request.getRequestURI(), "");
         String url = ServletUriComponentsBuilder
                 .fromHttpUrl(host)
@@ -41,24 +38,14 @@ public class MediaController {
         return ResponseEntity.ok(Map.of("url", url));
     }
 
-    @PostMapping(path = "upload/list")
-    public ResponseEntity<Object> uploadFileList(@RequestBody PhotoPetDTO dto) {
-        storageService.storeList(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
     @GetMapping(path = "{filename:.+}")
     public ResponseEntity<Resource> getFile(@PathVariable String filename) throws IOException {
+        log.info("Search  Photo by  filename : {}", filename);
         Resource file = storageService.loadAsResource(filename);
         String contentType = Files.probeContentType(file.getFile().toPath());
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.CONTENT_TYPE, contentType)
                 .body(file);
-    }
-
-    @GetMapping(path = "/all/{idPet}")
-    public ResponseEntity<Object> getAllPet(@PathVariable(name = "idPet") String idPet) {
-        return ResponseEntity.ok(storageService.getPhotoPetDtoListByPetId(Integer.parseInt(idPet)));
     }
 }
