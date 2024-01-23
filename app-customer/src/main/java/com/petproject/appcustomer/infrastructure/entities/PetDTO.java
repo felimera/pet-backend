@@ -21,7 +21,7 @@ public class PetDTO {
     @Size(max = 50, message = "The pet's name only has a maximum of 50 characters.")
     @Pattern(regexp = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$", message = "It is not a valid name.")
     private String name;
-    @Size(max = 100, message = "The pet's photo only has a maximum of 100 characters.")
+    @Size(max = 1000, message = "The pet's photo only has a maximum of 1000 characters.")
     private String photo;
     @Pattern(regexp = Constants.REGULARPHRASE_BIRTHDATE, message = "Incorrect date format. Ex: yyyy-MM-dd.")
     private String birthdate;
