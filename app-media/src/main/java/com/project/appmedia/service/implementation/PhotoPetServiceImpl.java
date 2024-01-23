@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.Path;
 import java.util.List;
 
 @Service
@@ -24,21 +23,11 @@ public class PhotoPetServiceImpl implements PhotoPetService {
     }
 
     @Override
-    public PhotoPet createOnePhotoPet(String filename, Path path, Integer idPet) {
+    public PhotoPet createOnePhotoPet(PhotoPet photoPet) {
 
-        if (photoPetRepository.existsByName(filename))
+        if (photoPetRepository.existsByName(photoPet.getName()))
             throw new BusinessException("404-01", HttpStatus.CONFLICT, Constants.MESSAGE_NOT_EXIST_DATA);
-
-        String location = path.toAbsolutePath().toString().replaceAll(filename, "");
-        String[] extension = filename.split("\\.");
-        PhotoPet photoPetNew = new PhotoPet();
-        photoPetNew.setName(filename);
-        photoPetNew.setExtension(extension[1]);
-        photoPetNew.setLocation(location);
-        photoPetNew.setProfilePicture(Boolean.FALSE);
-        photoPetNew.setPetId(idPet);
-
-        return photoPetRepository.save(photoPetNew);
+        return photoPetRepository.save(photoPet);
     }
 
     @Override
