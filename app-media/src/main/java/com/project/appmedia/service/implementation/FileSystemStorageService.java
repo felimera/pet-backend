@@ -3,6 +3,8 @@ package com.project.appmedia.service.implementation;
 import com.project.appmedia.controller.dto.PhotoPetDTO;
 import com.project.appmedia.exception.NotFoundException;
 import com.project.appmedia.exception.RequestException;
+import com.project.appmedia.mapper.PhotoPetMapper;
+import com.project.appmedia.models.PhotoPet;
 import com.project.appmedia.service.PhotoPetService;
 import com.project.appmedia.service.StorageService;
 import com.project.appmedia.util.Constants;
@@ -23,6 +25,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Service
 public class FileSystemStorageService implements StorageService {
@@ -87,6 +90,14 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void storeList(PhotoPetDTO dto) {
-        dto.getMultipartFileList().forEach(multipartFile -> store(multipartFile, dto.getIdPet()));
+        dto.getMultipartFileList().forEach(multipartFile -> store(multipartFile, dto.getPetId()));
+    }
+
+    @Override
+    public List<PhotoPetDTO> getPhotoPetDtoListByPetId(Integer idPet) {
+        List<PhotoPet> photoPets = photoPetService.getAllByIdPet(idPet);
+        if (photoPets.isEmpty())
+            throw new NotFoundException(Constants.MESSAGE_NOT_FOUND, "404-01", HttpStatus.NOT_FOUND);
+        return photoPets.stream().map(PhotoPetMapper.INSTANCE::toDomainModel).toList();
     }
 }
