@@ -10,5 +10,6 @@ public class Constants {
     public static final String T = "T";
 
     public static final String CODE_404_02 = "404-02";
-    public static final String MESSAGE_EXIST_DATA = "El nombre del registro ya existe.";
+    public static final String MESSAGE_NOT_EXIST_DATA = "The record name already exists.";
+    public static final String MESSAGE_NOT_FOUND = "No results were found.";
 }
