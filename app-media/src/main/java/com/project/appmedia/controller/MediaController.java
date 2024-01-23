@@ -4,6 +4,7 @@ import com.project.appmedia.controller.dto.PhotoPetDTO;
 import com.project.appmedia.service.StorageService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "api/media")
 @AllArgsConstructor
+@Slf4j
 public class MediaController {
 
     private final StorageService storageService;
@@ -53,5 +55,10 @@ public class MediaController {
                 .ok()
                 .header(HttpHeaders.CONTENT_TYPE, contentType)
                 .body(file);
+    }
+
+    @GetMapping(path = "/all/{idPet}")
+    public ResponseEntity<Object> getAllPet(@PathVariable(name = "idPet") String idPet) {
+        return ResponseEntity.ok(storageService.getPhotoPetDtoListByPetId(Integer.parseInt(idPet)));
     }
 }
