@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,9 +25,12 @@ public class PhotoPetServiceImpl implements PhotoPetService {
 
     @Override
     public PhotoPet createOnePhotoPet(PhotoPet photoPet) {
-
         if (photoPetRepository.existsByName(photoPet.getName()))
             throw new BusinessException("404-01", HttpStatus.CONFLICT, Constants.MESSAGE_NOT_EXIST_DATA);
+
+        photoPet.setCreationDate(LocalDateTime.now());
+        photoPet.setModificationDate(LocalDateTime.now());
+
         return photoPetRepository.save(photoPet);
     }
 
