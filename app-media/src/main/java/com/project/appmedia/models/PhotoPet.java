@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,4 +33,8 @@ public class PhotoPet {
     private String comment;
     @Column(name = "pp_pet_id")
     private Integer petId;
+    @Column(name = "pp_creation_date")
+    private LocalDateTime creationDate;
+    @Column(name = "pp_modification_date")
+    private LocalDateTime modificationDate;
 }
