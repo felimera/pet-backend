@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,8 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
             throw new BusinessException("415", HttpStatus.BAD_REQUEST, "The email already exists.");
         }
         CustomerEntity newCustomerEntity = CustomerMapper.INSTANCE.fromDomainModel(customerDTO);
+        newCustomerEntity.setCreationDate(LocalDateTime.now());
+        newCustomerEntity.setModificationDate(LocalDateTime.now());
         CustomerEntity savedCustomerEntity = jpaCustomerRepository.save(newCustomerEntity);
         return CustomerMapper.INSTANCE.toDomainModel(savedCustomerEntity);
     }
@@ -56,6 +59,7 @@ public class JpaCustomerRepositoryAdapter implements CustomerRepositoryPort {
             oldCustomerEntityOptional.get().setLastName(dto.getLastName());
             oldCustomerEntityOptional.get().setPhone(dto.getPhone());
             oldCustomerEntityOptional.get().setIsOlder(CadenaUtil.convertTrueFalse(dto.getIsOlder()));
+            oldCustomerEntityOptional.get().setModificationDate(LocalDateTime.now());
 
             CustomerEntity savedCustomerEntity = jpaCustomerRepository.save(oldCustomerEntityOptional.get());
             return CustomerMapper.INSTANCE.toDomainModel(savedCustomerEntity);

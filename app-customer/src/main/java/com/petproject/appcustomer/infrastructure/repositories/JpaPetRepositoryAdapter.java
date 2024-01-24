@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +44,9 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
         jpaColorEntityRepository.findById(dto.getIdEyeColorEntity()).ifPresent(newPetEntity::setEyeColorEntity);
         jpaMassMeasurementUnitsRepository.findById(dto.getIdMassMeasurementUnitsEntity()).ifPresent(newPetEntity::setMassMeasurementUnitsEntity);
         jpaPetCategoryRepository.findById(dto.getIdPetCategoryEntity()).ifPresent(newPetEntity::setPetCategoryEntity);
+
+        newPetEntity.setCreationDate(LocalDateTime.now());
+        newPetEntity.setModificationDate(LocalDateTime.now());
 
         PetEntity savedPetEntity = jpaPetRepository.save(newPetEntity);
         return PetMapper.INSTANCE.toDomainModel(savedPetEntity);
@@ -81,6 +85,8 @@ public class JpaPetRepositoryAdapter implements PetRepositoryPort {
             jpaCustomerRepository.findById(dto.getIdCustomerEntity()).ifPresent(customerEntity -> optionalPetEntity.get().setCustomerEntity(customerEntity));
             jpaMassMeasurementUnitsRepository.findById(dto.getIdMassMeasurementUnitsEntity()).ifPresent(massMeasurementUnitsEntity -> optionalPetEntity.get().setMassMeasurementUnitsEntity(massMeasurementUnitsEntity));
             jpaPetCategoryRepository.findById(dto.getIdPetCategoryEntity()).ifPresent(petCategoryEntity -> optionalPetEntity.get().setPetCategoryEntity(petCategoryEntity));
+
+            optionalPetEntity.get().setModificationDate(LocalDateTime.now());
 
             PetEntity updatePetEntity = jpaPetRepository.save(optionalPetEntity.get());
             return PetMapper.INSTANCE.toDomainModel(updatePetEntity);
