@@ -6,7 +6,7 @@ import com.petproject.appcustomer.application.usecases.in.pet.DeletePetUseCaseIm
 import com.petproject.appcustomer.application.usecases.in.pet.RetrievePetUseCaseImpl;
 import com.petproject.appcustomer.application.usecases.in.pet.UpdatePetUseCaseImpl;
 import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
-import com.petproject.appcustomer.infrastructure.repositories.JpaPetRepositoryAdapter;
+import com.petproject.appcustomer.infrastructure.repositories.pet.JpaPetRepositoryAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

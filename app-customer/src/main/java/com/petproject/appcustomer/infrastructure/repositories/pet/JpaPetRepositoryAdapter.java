@@ -1,4 +1,4 @@
-package com.petproject.appcustomer.infrastructure.repositories;
+package com.petproject.appcustomer.infrastructure.repositories.pet;
 
 import com.petproject.appcustomer.domain.models.in.PetEntity;
 import com.petproject.appcustomer.domain.models.in.enums.Gender;
@@ -6,6 +6,7 @@ import com.petproject.appcustomer.domain.ports.out.PetRepositoryPort;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
 import com.petproject.appcustomer.infrastructure.exception.NotFoundException;
 import com.petproject.appcustomer.infrastructure.mapper.PetMapper;
+import com.petproject.appcustomer.infrastructure.repositories.JpaCustomerRepository;
 import com.petproject.appcustomer.infrastructure.repositories.bodysize.JpaBodySizeEntityRepository;
 import com.petproject.appcustomer.infrastructure.repositories.color.JpaColorEntityRepository;
 import com.petproject.appcustomer.infrastructure.repositories.massunits.JpaMassMeasurementUnitsRepository;
