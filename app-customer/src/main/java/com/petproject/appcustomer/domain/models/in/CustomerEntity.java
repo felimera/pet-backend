@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,4 +33,8 @@ public class CustomerEntity {
     private String isOlder;
     @Column(name = "cus_user_id")
     private Integer userId;
+    @Column(name = "cus_creation_date")
+    private LocalDateTime creationDate;
+    @Column(name = "cus_modification_date")
+    private LocalDateTime modificationDate;
 }

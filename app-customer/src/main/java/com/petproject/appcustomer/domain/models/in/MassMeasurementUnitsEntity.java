@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,4 +29,8 @@ public class MassMeasurementUnitsEntity {
     @Column(name = "mmu_active")
     @Convert(converter = BooleanConverter.class)
     private Boolean active;
+    @Column(name = "mmu_creation_date")
+    private LocalDateTime creationDate;
+    @Column(name = "mmu_modification_date")
+    private LocalDateTime modificationDate;
 }

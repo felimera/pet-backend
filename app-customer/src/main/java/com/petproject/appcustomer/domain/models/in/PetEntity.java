@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -68,4 +69,8 @@ public class PetEntity {
     @JoinColumn(name = "pe_pet_category_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private PetCategoryEntity petCategoryEntity;
+    @Column(name = "pe_creation_date")
+    private LocalDateTime creationDate;
+    @Column(name = "pe_modification_date")
+    private LocalDateTime modificationDate;
 }

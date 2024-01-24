@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -25,4 +27,8 @@ public class TypeFigureEntity {
     @Column(name = "tf_active")
     @Convert(converter = BooleanConverter.class)
     private Boolean active;
+    @Column(name = "tf_creation_date")
+    private LocalDateTime creationDate;
+    @Column(name = "tf_modification_date")
+    private LocalDateTime modificationDate;
 }
