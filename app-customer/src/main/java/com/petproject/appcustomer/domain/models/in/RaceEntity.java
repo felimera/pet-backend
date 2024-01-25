@@ -36,8 +36,8 @@ public class RaceEntity {
     @Column(name = "rac_active")
     @Convert(converter = BooleanConverter.class)
     private Boolean active;
-    @Column(name = "pe_creation_date")
+    @Column(name = "rac_creation_date")
     private LocalDateTime creationDate;
-    @Column(name = "pe_modification_date")
+    @Column(name = "rac_modification_date")
     private LocalDateTime modificationDate;
 }
