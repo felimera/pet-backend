@@ -5,6 +5,7 @@ import com.petproject.appcustomer.domain.ports.in.internal.DeletePetUseCase;
 import com.petproject.appcustomer.domain.ports.in.internal.RetrievePetUseCase;
 import com.petproject.appcustomer.domain.ports.in.internal.UpdatePetUseCase;
 import com.petproject.appcustomer.infrastructure.entities.PetDTO;
+import com.petproject.appcustomer.infrastructure.entities.search.PetSearch;
 import lombok.AllArgsConstructor;
 
 import java.util.List;
@@ -35,6 +36,11 @@ public class PetService implements CreatePetUseCase, DeletePetUseCase, RetrieveP
     @Override
     public List<PetDTO> getAllPet() {
         return retrievePetUseCase.getAllPet();
+    }
+
+    @Override
+    public List<PetDTO> getPetMultipleParameter(PetSearch petSearch) {
+        return retrievePetUseCase.getPetMultipleParameter(petSearch);
     }
 
     @Override

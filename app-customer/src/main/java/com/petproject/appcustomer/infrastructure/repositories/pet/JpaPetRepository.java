@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface JpaPetRepository extends JpaRepository<PetEntity,Integer> {
+public interface JpaPetRepository extends JpaRepository<PetEntity, Integer>, JpaPetCriteriaRepository {
 }
