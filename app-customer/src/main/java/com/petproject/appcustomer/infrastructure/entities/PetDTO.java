@@ -30,9 +30,6 @@ public class PetDTO {
     @NotNull(message = "The pet's gender cannot be null.")
     @Size(min = 1, max = 1, message = "The pet's gender only has a maximum of 1 characters.")
     private String gender;
-    @NotEmpty(message = "The pet's race cannot be empty.")
-    @NotNull(message = "The pet's race cannot be null.")
-    private String race;
     @NotEmpty(message = "The pet's weight cannot be empty.")
     @NotNull(message = "The pet's weight cannot be null.")
     private String characteristicsExtremities;
@@ -46,12 +43,10 @@ public class PetDTO {
     private Integer idMassMeasurementUnitsEntity;
     @NotNull(message = "The pet's Hair Color cannot be null.")
     private Integer idHairColorEntity;
-    @NotNull(message = "The pet's Body Size cannot be null.")
-    private Integer idBodySizeEntity;
     @NotNull(message = "The pet's Type Figure cannot be null.")
     private Integer idTypeFigureEntity;
     @NotNull(message = "The pet's Eye Color cannot be null.")
     private Integer idEyeColorEntity;
-    @NotNull(message = "The pet category cannot be null.")
-    private Integer idPetCategoryEntity;
+    @NotNull(message = "The pet race cannot be null.")
+    private Integer idRaceEntity;
 }

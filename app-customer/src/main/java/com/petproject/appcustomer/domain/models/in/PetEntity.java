@@ -34,8 +34,6 @@ public class PetEntity {
     @Column(name = "pe_gender")
     @Convert(converter = GenderConverter.class)
     private Gender gender;
-    @Column(name = "pe_race")
-    private String race;
     @Column(name = "pe_characteristics_extremities")
     private String characteristicsExtremities;
 
@@ -54,10 +52,6 @@ public class PetEntity {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ColorEntity hairColorEntity;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pe_body_size_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private BodySizeEntity bodySizeEntity;
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pe_type_figure_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TypeFigureEntity typeFigureEntity;
@@ -66,9 +60,10 @@ public class PetEntity {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ColorEntity eyeColorEntity;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pe_pet_category_id")
+    @JoinColumn(name = "pe_race_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private PetCategoryEntity petCategoryEntity;
+    private RaceEntity raceEntity;
+
     @Column(name = "pe_creation_date")
     private LocalDateTime creationDate;
     @Column(name = "pe_modification_date")
